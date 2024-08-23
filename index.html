@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WEATHER-APP</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="nav-bar">
+      <div class="logo">
+        <h2>Weather<span>APP.</span></h2>
+      </div>
+      <div class="nav-list">
+        <a  class="home" href="">Home</a>
+        <a class="services" href="">Services</a>
+        <a class="projects" href="">Premium</a>
+        <a  class="aboutme" href="">Help</a>
+        <a class="contact" href="">Contact us</a>
+      </div>
+    </div>
+
+
+
+    <div class="card">
+      <div class="search">
+        <input type="text" placeholder="Enter your city" spellcheck="false" />
+        <a href="#">
+          <img class="img-glass" src="./images/search.png" alt="" height="25"
+        /></a>
+      </div>
+        <div class="error">
+          <p>Invalid city name</p>
+        </div>
+
+      <div class="cloud">
+        <img src="./images/clouds.png" alt="" height="150" />
+        <h1>22°C</h1>
+        <h2>New York</h2>
+      </div>
+      <div class="data">
+        <div class="humidity">
+          <img src="./images/humidity.png" alt="" height="48" />
+          <p>78% <br />Humidity</p>
+        </div>
+        <div class="wind">
+          <img src="./images/wind.png" alt="" height="48" />
+          <p>
+            18 km/h <br />
+            Wind Speed
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="weather.js"></script>
+  </body>
+</html>

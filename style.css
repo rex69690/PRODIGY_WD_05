@@ -1,0 +1,185 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* :root{
+    --roboto:   font-family: "Roboto", sans-serif;
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background: url("./images/backgroundapp.jpg");
+  color: white;
+  height: 300vh;
+}
+
+
+.logo {
+  color: white;
+}
+.logo span {
+  color: rgb(115, 16, 208);
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  height: 45px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+  border-radius: 10px;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-list a {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  margin-right: 0;
+}
+
+.card {
+  height: 475px;
+  width: 350px;
+  /* border: 2px solid black; */
+  margin: auto;
+  margin-top: 150px;
+
+  border-radius: 20px;
+
+  /* Add the blur effect */
+  backdrop-filter: blur(90px);
+  background: rgba(255, 255,255,.1);
+
+  text-align: center;
+  background-position: center;
+  background-repeat: none;
+  background-size: auto;
+}
+
+.search input {
+  position: relative;
+  top: 20px;
+  border: none;
+  padding: 8px;
+  margin: 10px;
+  font-size: 15px;
+  border-radius: 20px;
+  /* animation: lookup 2s linear 0s  infinite; */
+}
+.search img {
+  position: relative;
+  top: 25px;
+  margin-left: 4px;
+}
+.weather h1 {
+  position: relative;
+  margin-top: 10px;
+}
+
+.weather h2 {
+  position: relative;
+  margin-top: 15px;
+  font-size: 30px;
+  font-weight: 290;
+}
+.weather img{
+  position: relative;
+  top: 20px;
+
+}
+
+.humidity{
+    display: flex;
+    position: relative;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.data{
+    display: flex;
+}
+
+.humidity p{
+    position: relative;
+    margin-left: 8px;
+}
+.wind {
+    display: flex;
+}
+
+.wind img{
+    position: relative;
+    margin-top: 20px;
+    margin-left: 40px;
+}
+.wind p{
+    position: relative;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.weather{
+  display: none;
+}
+
+.error{
+  text-align: left;
+  margin-left: 10px;
+  font-size: 14px;
+  margin-top: 10px;
+  display: none   ;
+}
+
+
+/* animations keyframes */
+/* @keyframes lookup {
+
+    from{background-color: white;}
+    to{background-color: grey;}
+
+    
+} */
+
+
+/*setting up transitions for the anchor tags*/
+
+/* transitions for anchor tags start */
+
+.home:hover {
+  font-size: larger;
+  transition: font-size 0.5s normal;
+}
+
+.services:hover {
+  font-size: large;
+  transition: font-size 0.5s normal;
+}
+
+.projects:hover {
+  font-size: large;
+  transition: font-size 0.5s normal;
+}
+
+.aboutme:hover {
+  font-size: large;
+  transition: font-size  0.5s  normal;
+}
+
+.contact:hover {
+  font-size: large;
+  transition: font-size  0.5s  normal;
+}
+
+/* anchor tag transitions end here */
