@@ -11,7 +11,8 @@
   font-family: "Poppins", sans-serif;
 }
 body {
-  background: url("./images/backgroundapp.jpg");
+  /* background: url("./images/backgroundapp.jpg"); */
+  background-color: rgb(107, 174, 212);
   color: white;
   height: 300vh;
 }
@@ -30,7 +31,7 @@ body {
   align-items: center;
   background: rgba(255, 255, 255, 0.1);
   height: 45px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
   border-radius: 10px;
 }
 

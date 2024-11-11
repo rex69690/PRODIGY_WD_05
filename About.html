@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Monitoring App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    .unique-section {
+      margin-top: 20px;
+    }
+    .data-item {
+      margin-bottom: 10px;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    .error {
+      color: red;
+      display: none; /* Initially hidden */
+    }
+  </style>
+</head>
+<body>
+  <h1>Weather Monitoring App</h1>
+  
+  <!-- Error Message -->
+  <div class="error"></div>
+
+  <!-- Current Weather Section -->
+  <div class="unique-section" id="sectionA">
+    <h2>Current Weather:</h2>
+    <p id="currentTemperatureA">Temperature: -- °C</p>
+    <p id="currentHumidityA">Humidity: -- %</p>
+  </div>
+  
+  <!-- Past Data Section -->
+  <div class="unique-section" id="sectionB">
+    <h2>Past Data (Last 5 Readings):</h2>
+    <div id="pastDataB">
+      <!-- Past data will be inserted here -->
+    </div>
+  </div>
+  
+  <script>
+    // Function to fetch past data from ThingSpeak API
+   // Function to fetch past data from ThingSpeak API
+async function getPastData() {
+  const channelID = '2648094';  // Replace with your ThingSpeak Channel ID
+  const fieldIDHumidity = 1;  // Field 1 for Humidity
+  const apiKey = 'QI9W44BI92MM485L';  // Replace with your ThingSpeak Read API Key
+  const numResults = 5;  // Number of past readings to fetch
+
+  const url = `https://api.thingspeak.com/channels/${channelID}/fields/${fieldIDHumidity}.json?results=${numResults}&api_key=${apiKey}`;
+
+  try {
+    const response = await fetch(url);
+    
+    // Check if the response is OK (status code 200)
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    // Check if there are feeds available
+    if (!data.feeds || data.feeds.length === 0) {
+      throw new Error("No data available for the specified channel.");
+    }
+
+    const feeds = data.feeds;
+    let output = ''; // To hold past data
+
+    // Loop through each data point and format the output
+    feeds.forEach(feed => {
+      const time = feed.created_at;  // Timestamp of the reading
+      const humidity = feed.field1;  // Humidity value
+
+      output += `
+        <div class="data-item">
+          <strong>Humidity:</strong> ${humidity}% at ${time}
+        </div>
+      `;
+    });
+
+    // Insert the past data into the HTML
+    document.getElementById('pastDataB').innerHTML = output;
+
+  } catch (error) {
+    console.error('Error fetching past data:', error);
+    document.querySelector(".error").innerHTML = `Error fetching past data: ${error.message}`;
+    document.querySelector(".error").style.display = "block";
+  }
+}
+
+// Function to fetch current data from ThingSpeak API
+async function getCurrentData() {
+  const channelID = '2648094';  // Replace with your ThingSpeak Channel ID
+  const fieldIDTemperature = 2;  // Field 2 for Temperature
+  const apiKey = '78XW8VIFJJVEC020';  
+
+  const url = `https://api.thingspeak.com/channels/${channelID}/fields/${fieldIDTemperature}.json?results=1&api_key=${apiKey}`;
+
+  try {
+    const response = await fetch(url);
+    
+    // Check if the response is OK (status code 200)
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    
+    // Check if there are feeds available
+    if (!data.feeds || data.feeds.length === 0) {
+      throw new Error("No data available for the specified channel.");
+    }
+
+    const latestFeed = data.feeds[0]; // Get the most recent feed
+    const currentTemperature = latestFeed.field2; // Get temperature value
+    const currentHumidity = latestFeed.field1; // Get humidity value
+
+    // Update the current temperature and humidity on the page
+    document.getElementById('currentTemperatureA').innerText = `Temperature: ${currentTemperature} °C`;
+    document.getElementById('currentHumidityA').innerText = `Humidity: ${currentHumidity} %`;
+    
+  } catch (error) {
+    console.error('Error fetching current data:', error);
+    document.querySelector(".error").innerHTML = `Error fetching current data: ${error.message}`;
+    document.querySelector(".error").style.display = "block";
+  }
+}
+
+// Fetch the past and current data on page load
+getPastData();
+getCurrentData();
+  </script>
+</body>
+</html>
